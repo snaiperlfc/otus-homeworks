@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+
+  docker-comp:
+    build: .
+    image: snaiperlfc/docker-comp:0.0.1-SNAPSHOT
+    restart: on-failure
+    ports:
+      - "8000:8000"
