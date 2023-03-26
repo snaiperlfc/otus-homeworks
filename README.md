@@ -1,11 +1,10 @@
 # Getting Started
 
+## Homework - 1
 ### Docker Compose
 
 The `docker-compose.yml` file that is in the root directory of this project will provide you with a `v3.7` Docker
 Compose manifest that you can use to run this application locally. Just run the following commands.
-
-### Homework - 1
 
 ```bash
 docker-compose up -d
@@ -18,7 +17,11 @@ Get health, run the following commands:
 curl -L 'localhost:8000/health'
 ````
 
-### Homework - 2
+## Homework - 2
+
+### Minikube
+
+Minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows.
 
 Apply manifests, run the following commands:
 
