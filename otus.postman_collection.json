@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "6d222777-9aa2-49c5-b895-bdab384c0027",
+    "_postman_id": "21dc5c7f-c32d-4ea7-b001-56875a557e8b",
     "name": "otus",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "7829638"
@@ -22,6 +22,46 @@
           ]
         },
         "description": "1 - docker-comp"
+      },
+      "response": []
+    },
+    {
+      "name": "arch.homework/health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://arch.homework/health",
+          "protocol": "http",
+          "host": [
+            "arch",
+            "homework"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "arch.homework/otusapp/a.zimin/health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://arch.homework/otusapp/a.zimin/health",
+          "protocol": "http",
+          "host": [
+            "arch",
+            "homework"
+          ],
+          "path": [
+            "otusapp",
+            "a.zimin",
+            "health"
+          ]
+        }
       },
       "response": []
     }
