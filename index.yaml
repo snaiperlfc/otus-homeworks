@@ -1,0 +1,33 @@
+apiVersion: v1
+entries:
+  otus-chart:
+    - apiVersion: v2
+      appVersion: 0.0.14-SNAPSHOT
+      created: "2023-04-03T00:31:46.1371353+03:00"
+      dependencies:
+        - condition: postgresql.enabled
+          name: postgresql
+          repository: https://cetic.github.io/helm-charts
+          tags:
+            - otus-database
+          version: 0.2.3
+      description: Otus homework helm chart for Kubernetes
+      digest: c4c98d818403efa48ec09e0cf112f2ed268548dd66d1773c12c898d942e67c37
+      home: https://github.com/snaiperlfc/otus-homeworks
+      keywords:
+        - automated
+        - dependencies
+        - dependency
+        - management
+        - update
+      maintainers:
+        - email: snaiperlfc@ya.ru
+          name: Zimin
+      name: otus-chart
+      sources:
+        - https://github.com/snaiperlfc/otus-homeworks
+      type: application
+      urls:
+        - otus-chart-0.1.0.tgz
+      version: 0.1.0
+generated: "2023-04-03T00:31:46.1191893+03:00"
