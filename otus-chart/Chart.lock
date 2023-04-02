@@ -1,0 +1,6 @@
+dependencies:
+- name: postgresql
+  repository: https://cetic.github.io/helm-charts
+  version: 0.2.3
+digest: sha256:8420fcbbf19b68cbe98b962049a7c6e1e98d2bd5f1c93f171c3fa3c812e9281e
+generated: "2023-04-02T21:14:50.6390091+03:00"

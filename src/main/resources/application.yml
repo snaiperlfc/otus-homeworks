@@ -1,15 +1,38 @@
+postgres.port: 5432
+postgres.host: localhost
+postgres.database-name: otus
+postgres.password: ${postgres.password:docker}
+postgres.username: ${postgres.username:docker}
+postgres.url: jdbc:postgresql://${postgres.host:localhost}:${postgres.port}/${postgres.database-name}
+
 spring:
   application:
-    name: docker-comp
+    name: otus-homework
+
+  datasource:
+    url: ${postgres.url}
+    username: ${postgres.username}
+    password: ${postgres.password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
 server:
   port: 8000
+
 logging:
   level:
     root: INFO
+
 management:
   endpoints:
     web:
       exposure:
-        include: health
-
+        include: "*"
       base-path: /
+  endpoint:
+    health:
+      show-details: always
+

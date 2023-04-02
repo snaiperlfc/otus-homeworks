@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otus-config
+  labels:
+    app: otus
+data:
+  postgres.host: {{ (include "postgresql.fullname" .)}}
+  postgres.port: {{.Values.postgresql.port | quote}}
+  postgres.database-name: {{ .Values.postgresql.database }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: otus-secret
+type: Opaque
+data:
+  username: {{ .Values.postgresql.username | b64enc | quote }}
+  password: {{ .Values.postgresql.password | b64enc | quote }}
+

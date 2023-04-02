@@ -2,9 +2,22 @@ version: '3.7'
 
 services:
 
-  docker-comp:
+  otus-homework:
     build: .
-    image: snaiperlfc/docker-comp:0.0.1-SNAPSHOT
+    image: snaiperlfc/otus-homework:0.0.1-SNAPSHOT
     restart: on-failure
     ports:
       - "8000:8000"
+
+  postgres:
+    image: bitnami/postgresql
+    container_name: postgres
+    restart: on-failure
+    environment:
+      - POSTGRES_DATABASE=otus
+      - POSTGRES_USERNAME=docker
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: "exit 0"
