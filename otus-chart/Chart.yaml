@@ -2,6 +2,19 @@ apiVersion: v2
 name: otus-chart
 description: Otus homework helm chart for Kubernetes
 
+home: https://github.com/snaiperlfc/otus-homeworks
+keywords:
+  - automated
+  - dependencies
+  - dependency
+  - management
+  - update
+sources:
+  - https://github.com/snaiperlfc/otus-homeworks
+maintainers:
+  - name: Zimin
+    email: snaiperlfc@ya.ru
+
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
