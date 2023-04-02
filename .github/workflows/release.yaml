@@ -32,7 +32,7 @@ jobs:
 
       - name: Build chart dependencies
         run: |
-          for dir in otus-chart/*/
+          for dir in otus-chart/
           do
               (cd ${dir}; helm dependency build)
           done
