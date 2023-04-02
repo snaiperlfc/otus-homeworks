@@ -67,13 +67,28 @@ helm repo add cetic https://cetic.github.io/helm-charts
 heln repo update
 ```
 
-### Helm Deployment
+### Helm Deployment(Local)
 
 Once Helm is set up, deploying the distributed system to any Kubernetes cluster is quite simple.
 
 ```bash
 helm install otus ./otus-chart 
 ```
+
+### Helm Deployment(Remote)
+
+Helm install from GitHub repository. Before install add repository, use the following command.
+
+````bash
+helm repo add otus https://raw.githubusercontent.com/snaiperlfc/otus-homeworks/master
+helm repo update
+````
+
+Install otus helm chart, use the following command.
+
+````bash
+helm install otus otus-chart
+````
 
 To check the status of the deployment, use the following command.
 
