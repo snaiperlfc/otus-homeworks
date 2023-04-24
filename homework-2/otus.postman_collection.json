@@ -1,0 +1,50 @@
+{
+  "info": {
+    "_postman_id": "21dc5c7f-c32d-4ea7-b001-56875a557e8b",
+    "name": "otus",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7829638"
+  },
+  "item": [
+    {
+      "name": "arch.homework/health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://arch.homework/health",
+          "protocol": "http",
+          "host": [
+            "arch",
+            "homework"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "arch.homework/otusapp/a.zimin/health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://arch.homework/otusapp/a.zimin/health",
+          "protocol": "http",
+          "host": [
+            "arch",
+            "homework"
+          ],
+          "path": [
+            "otusapp",
+            "a.zimin",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -8,10 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @SpringBootApplication
 public class OtusHomeworkApplication {
@@ -27,6 +30,12 @@ class OtusController {
     @GetMapping
     public String statusUp() {
         return "{\"Otus homework status\": \"UP\"}";
+    }
+
+    @GetMapping("/error")
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void statusError() {
+        throw new RuntimeException("Error simulated");
     }
 }
 
@@ -50,6 +59,7 @@ class User {
     private String email;
     @Schema(example = "+71002003040")
     private String phone;
+    private Date createdAt = new Date();
 
 }
 

@@ -1,9 +1,9 @@
 postgres.port: 5432
 postgres.host: localhost
 postgres.database-name: otus
-postgres.password: ${postgres.password:docker}
-postgres.username: ${postgres.username:docker}
-postgres.url: jdbc:postgresql://${postgres.host:localhost}:${postgres.port}/${postgres.database-name}
+postgres.pass: ${postgres.password:docker}
+postgres.user: ${postgres.username:docker}
+postgres.url: jdbc:postgresql://${postgres.host:localhost}:${postgres.port}/${postgres.database-name}?useSSL=false
 
 spring:
   application:
@@ -11,8 +11,8 @@ spring:
 
   datasource:
     url: ${postgres.url}
-    username: ${postgres.username}
-    password: ${postgres.password}
+    username: ${postgres.user}
+    password: ${postgres.pass}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -35,4 +35,13 @@ management:
   endpoint:
     health:
       show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles[http.server.requests]: 0.5, 0.7, 0.95, 0.99
+      percentiles-histogram:
+        "[http.server.requests]": true
+      slo[http.server.requests]: 10ms, 50ms, 100ms, 200ms, 300ms, 400ms, 500ms
 

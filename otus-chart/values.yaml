@@ -37,18 +37,24 @@ securityContext: { }
 # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8000
 
 
 postgresql:
   enabled: true
-  username: postgres
-  password: postgres
-  database: postgres
-  port: 5432
+  auth:
+    postgresPassword: docker
+    username: "postgres"
+    database: "postgres"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
 
-
+metrics:
+  serviceMonitor:
+    enabled: true
 
 ingress:
   enabled: true

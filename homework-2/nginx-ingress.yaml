@@ -1,6 +1,6 @@
 controller:
   kind: DaemonSet
-  
+
   reportNodeInternalIp: true
 
   hostPort:
@@ -11,3 +11,8 @@ controller:
 
   service:
     type: NodePort
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true

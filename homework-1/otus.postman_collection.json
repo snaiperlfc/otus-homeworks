@@ -1,0 +1,29 @@
+{
+  "info": {
+    "_postman_id": "21dc5c7f-c32d-4ea7-b001-56875a557e8b",
+    "name": "otus",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7829638"
+  },
+  "item": [
+    {
+      "name": "localhost:8000/health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8000/health",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "health"
+          ]
+        },
+        "description": "1 - docker-comp"
+      },
+      "response": []
+    }
+  ]
+}

@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   otus-homework:
-    build: .
+    build: ..
     image: snaiperlfc/otus-homework:0.0.1-SNAPSHOT
     restart: on-failure
     ports:

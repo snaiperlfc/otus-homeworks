@@ -7,65 +7,6 @@
   },
   "item": [
     {
-      "name": "localhost:8000/health",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "localhost:8000/health",
-          "host": [
-            "localhost"
-          ],
-          "port": "8000",
-          "path": [
-            "health"
-          ]
-        },
-        "description": "1 - docker-comp"
-      },
-      "response": []
-    },
-    {
-      "name": "arch.homework/health",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://arch.homework/health",
-          "protocol": "http",
-          "host": [
-            "arch",
-            "homework"
-          ],
-          "path": [
-            "health"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "arch.homework/otusapp/a.zimin/health",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://arch.homework/otusapp/a.zimin/health",
-          "protocol": "http",
-          "host": [
-            "arch",
-            "homework"
-          ],
-          "path": [
-            "otusapp",
-            "a.zimin",
-            "health"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
       "name": "create user",
       "request": {
         "method": "POST",
