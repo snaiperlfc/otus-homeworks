@@ -14,3 +14,7 @@
 ## Homework - 4
 
 [Homework - 4](homework-4/README.md)
+
+## Homework - 5
+
+[Homework - 5](homework-5/README.md)
