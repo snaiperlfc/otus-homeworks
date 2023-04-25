@@ -1,0 +1,4 @@
+---
+allowAdHocKialiImage: true
+image:
+  tag: "v1.67.0"

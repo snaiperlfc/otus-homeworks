@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: external-service-ingress
+  #  namespace: monitoring
+  labels:
+    name: external-service-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: external.arch.homework
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: external-service
+                port:
+                  number: 80
+

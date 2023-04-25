@@ -60,23 +60,36 @@ helm repo update
 Установить пакет kube-prometheus-stack
 
 ````bash
-helm install prom prometheus-community/kube-prometheus-stack -f ./prometheus.yaml --atomic --namespace=monitoring
+helm install prometheus prometheus-community/kube-prometheus-stack -f prometheus/operator-values.yaml --atomic --namespace=monitoring
 
 ````
 
 Проверить что все запустилось
 
 ````bash
-kubectl --namespace monitoring get pods -l "release=prom"
+kubectl --namespace monitoring get pods -l "release=prometheus"
 ````
+
+Добавить сервис типа NodePort для прямого доступа к Prometheus и Grafana:
+
+```shell script
+kubectl apply -f prometheus/monitoring-nodeport.yaml
+```
+
+Открыть web-интерфейс Grafana:
+
+```shell script
+minikube service -n monitoring prometheus-grafana-nodeport
+```
 
 Если все хорошо ответ будет:
 
 ````
-NAME                                                   READY   STATUS    RESTARTS   AGE
-prom-kube-prometheus-stack-operator-6c454db7fd-pt2dx   1/1     Running   0          95s
-prom-kube-state-metrics-5cdcb98c6c-vzfcj               1/1     Running   0          95s
-prom-prometheus-node-exporter-5f7l4                    1/1     Running   0          95s
+NAME                                            READY   STATUS    RESTARTS   AGE
+prom-operator-8578b868d-n6mt6                   1/1     Running   0          59s
+prometheus-kube-state-metrics-75cb965fc-q4dmw   1/1     Running   0          59s
+prometheus-prometheus-node-exporter-b9x5m       1/1     Running   0          59s
+
 ````
 
 Применить правила Ingress для GUI grafana

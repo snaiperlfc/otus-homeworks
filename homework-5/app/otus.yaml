@@ -1,0 +1,75 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+  labels:
+    istio-injection: enabled # Включаем инжект сайдкаров Istio для неймспейса
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otus-service
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      #      nodePort: 32010
+      targetPort: 8000
+      name: "http"  # Istio требует явного указания протокола при определенных настройках
+  selector:
+    app: otus
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: otus-1-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: otus
+      version: "v1"
+  template:
+    metadata:
+      labels:
+        app: otus
+        version: "v1"
+    spec:
+      containers:
+        - name: otus
+          image: snaiperlfc/otus-homework:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+      restartPolicy: Always
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: otus-2-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: otus
+      version: "v2"
+  template:
+    metadata:
+      labels:
+        app: otus
+        version: "v2"
+    spec:
+      containers:
+        - name: otus
+          image: snaiperlfc/otus-homework:0.0.2-SNAPSHOT
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+      restartPolicy: Always

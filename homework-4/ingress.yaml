@@ -15,7 +15,7 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: prom-grafana
+                name: prometheus-grafana
                 port:
                   number: 80
 ---
@@ -36,7 +36,7 @@ spec:
             path: /
             backend:
               service:
-                name: prom-kube-prometheus-stack-prometheus
+                name: prom-prometheus
                 port:
                   number: 9090
 ---
@@ -57,6 +57,6 @@ spec:
             path: /
             backend:
               service:
-                name: alertmanager-operated
+                name: prom-alertmanager
                 port:
                   number: 9093

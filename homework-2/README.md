@@ -47,7 +47,7 @@ kubectl apply -f ./deployment
 Apply that helm if ingress-nginx is not exists in your minikube:
 
 ````bash
-helm install nginx ingress-nginx/ingress-nginx -f ./nginx-ingress.yaml
+helm install nginx --create-namespace -n ingress-nginx ingress-nginx/ingress-nginx -f ./nginx-ingress.yaml
 ````
 
 Get arch.homework health, run the following commands:
