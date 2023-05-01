@@ -46,15 +46,15 @@ metadata:
   name: otus-service
 spec:
   hosts:
-    - otus-service
+    - arch.homework
   http:
     - route:
         - destination:
-            host: arch.homework
+            host: otus-service.default.svc.cluster.local
             subset: v1
           weight: 50
         - destination:
-            host: arch.homework
+            host: otus-service.default.svc.cluster.local
             subset: v2
           weight: 50
 ---
