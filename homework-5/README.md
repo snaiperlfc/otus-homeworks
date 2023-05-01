@@ -266,13 +266,11 @@ kubectl apply -f ingress.yaml
 curl 'http://arch.homework'
 ````
 
-```shell script
-curl "$(minikube service proxy-app --url)?url=http://otus-service"
-```
-
 В результате исполнения команды видно, что запрос на `otus-service` проходит.
 
-![балансировка трафика между сервисами 50/50](kiali-map-balanced.png)
+![балансировка трафика между сервисами 50/50](istio.png)
+
+-----------------------------------------------------------------------------------
 
 ## Others
 
