@@ -256,7 +256,15 @@ curl "$(minikube service proxy-app --url)?url=http://otus-service"
 kubectl apply -f manage-traffic/proxy-app-sidecar-enable.yaml
 ```
 
+```shell script
+kubectl apply -f ingress.yaml
+```
+
 Выполнить запрос к сервису `otus-service`:
+
+````bash
+curl 'http://arch.homework'
+````
 
 ```shell script
 curl "$(minikube service proxy-app --url)?url=http://otus-service"
