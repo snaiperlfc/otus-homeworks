@@ -166,6 +166,24 @@ kubectl apply -f manage-traffic/proxy-app-sidecar-enable.yaml
 kubectl apply -f service-discovery/
 ```
 
+Настроим Ingress Gateway
+
+```shell script
+kubectl apply -f http-gateway.yaml
+```
+
+Выполнить запрос к сервису `otus-service`:
+
+````bash
+curl 'http://arch.homework'
+````
+
+В результате исполнения команды видно, что запрос на `otus-service` проходит.
+
+![балансировка трафика между сервисами 50/50](kiali-map-balanced.png)
+
+-----------------------------------------------------------------------------------
+
 ### Устанавливаем proxy-app
 
 Proxy-app - сервис, умеющий запрашивать другие запросы по query-параметру url.
@@ -255,22 +273,6 @@ curl "$(minikube service proxy-app --url)?url=http://otus-service"
 ```shell script
 kubectl apply -f manage-traffic/proxy-app-sidecar-enable.yaml
 ```
-
-```shell script
-kubectl apply -f ingress.yaml
-```
-
-Выполнить запрос к сервису `otus-service`:
-
-````bash
-curl 'http://arch.homework'
-````
-
-В результате исполнения команды видно, что запрос на `otus-service` проходит.
-
-![балансировка трафика между сервисами 50/50](istio.png)
-
------------------------------------------------------------------------------------
 
 ## Others
 

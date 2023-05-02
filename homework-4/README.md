@@ -95,7 +95,7 @@ prometheus-prometheus-node-exporter-b9x5m       1/1     Running   0          59s
 Применить правила Ingress для GUI grafana
 
 ````bash
-kubectl apply -f ingress.yaml --namespace=monitoring
+kubectl apply -f http-gateway.yaml --namespace=monitoring
 ````
 
 Добавить в файл hosts
