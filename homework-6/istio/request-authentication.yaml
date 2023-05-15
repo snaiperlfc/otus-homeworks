@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: my-request-authentication
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+  jwtRules:
+    - issuer: "http://arch.homework/auth/realms/otus"
+      jwksUri: "http://arch.homework/auth/realms/otus/protocol/openid-connect/certs"
+      forwardOriginalToken: true

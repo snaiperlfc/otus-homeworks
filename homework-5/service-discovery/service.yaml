@@ -48,7 +48,7 @@ spec:
   hosts:
     - arch.homework
   gateways:
-    - http-gateway
+    - istio-system/http-gateway
   http:
     - route:
         - destination:

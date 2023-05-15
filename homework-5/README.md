@@ -83,10 +83,6 @@ istioctl operator init --watchedNamespaces istio-system --operatorNamespace isti
 kubectl apply -f istio/istio.yaml
 ```
 
-```shell script
-kubectl delete -f istio/istio.yaml
-```
-
 Проверить состояние Istio:
 
 ```shell script
@@ -170,6 +166,12 @@ kubectl apply -f service-discovery/
 
 ```shell script
 kubectl apply -f http-gateway.yaml
+```
+
+Настроим Ingress
+
+```shell script
+kubectl apply -f nginx-ingress/app-ingress.yaml
 ```
 
 Выполнить запрос к сервису `otus-service`:
@@ -283,7 +285,7 @@ kubectl apply -f manage-traffic/proxy-app-sidecar-enable.yaml
 Включить аутентификацию для `echoserver`:
 
 ```shell script
-kubectl apply -f auth/echoserver-auth.yaml
+kubectl apply -f auth/otus-auth.yaml
 ```
 
 Выполнить запрос к сервису `echoserver`:

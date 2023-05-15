@@ -2,6 +2,7 @@
 #kind: Gateway
 #metadata:
 #  name: http-gateway
+#  namespace: istio-system
 #spec:
 #  selector:
 #    istio: ingressgateway
@@ -11,12 +12,13 @@
 #        name: http
 #        protocol: HTTP
 #      hosts:
-#        - arch.homework
-#---
+#        - "arch.homework"
+
+---
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: http-gateway
+  name: my-gateway
   namespace: istio-system
 spec:
   selector:

@@ -1,0 +1,58 @@
+#apiVersion: networking.istio.io/v1alpha3
+#kind: VirtualService
+#metadata:
+#  name: gateway-vs
+#spec:
+#  hosts:
+#    - "arch.homework"
+#  gateways:
+#    - http-gateway
+#  http: # Обратите внимание на порядок маршрутов, маршрут / идет последним, иначе все запросы будут идти именно в него
+#    - match:
+#        - uri:
+#            prefix: / # Остальные запросы направляем к otus-service
+#      route:
+#        - destination:
+#            port:
+#              number: 80
+#            host: otus-service.default.svc.cluster.local
+#      retries:
+#        attempts: 3
+#        retryOn: 5xx
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: my-virtualservice
+#  namespace: app
+spec:
+  hosts:
+    - arch.homework
+  gateways:
+    - istio-system/my-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /auth
+      route:
+        - destination:
+            host: keycloak.default.svc.cluster.local
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /oauth2
+      route:
+        - destination:
+            host: oauth2-proxy.default.svc.cluster.local
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /users/1
+      route:
+        - destination:
+            host: otus-otus-chart.default.svc.cluster.local
+            port:
+              number: 8000
+      name: "otus"

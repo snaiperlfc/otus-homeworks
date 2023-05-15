@@ -1,0 +1,53 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: my-authorization-policy
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            requestPrincipals: [ "*" ]
+      to:
+        - operation:
+            paths: [ "/users/1" ]
+---
+#kind: AuthorizationPolicy
+#apiVersion: security.istio.io/v1beta1
+#metadata:
+#  name: ext-authz-oauth2-proxy
+#  namespace: istio-system
+#spec:
+#  selector:
+#    matchLabels:
+#      app: istio-ingressgateway
+#      istio: ingressgateway
+#  action: CUSTOM
+#  provider:
+#    name: oauth2-proxy
+#  rules:
+#    - to:
+#        - operation:
+#            hosts: ["arch.homework"]
+#            notPaths: ["/auth/*"]
+---
+#apiVersion: security.istio.io/v1beta1
+#kind: AuthorizationPolicy
+#metadata:
+#  name: check-req-from-gateway
+#  namespace: istio-system
+#spec:
+#  selector:
+#    matchLabels:
+#      app: istio-ingressgateway
+#      istio: ingressgateway
+#  action: ALLOW
+#  rules:
+#    - from:
+#        - source:
+#            principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]

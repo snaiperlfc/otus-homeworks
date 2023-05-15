@@ -1,0 +1,47 @@
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: otus-ingress
+#  annotations:
+#    nginx.ingress.kubernetes.io/auth-url: "http://$host/oauth2/auth"
+#    nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+##    nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-Email,X-Auth-Request-User"
+#    nginx.ingress.kubernetes.io/auth-response-headers: "x-auth-request-user, x-auth-request-email, x-auth-request-preferred-username, authorization"
+#    # Fix for 'upstream sent too big header while reading response header from upstream'
+#    nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#  - host: arch.homework
+#    http:
+#      paths:
+#        - path: /users/1
+#          pathType: Prefix
+#          backend:
+#            service:
+#              name: otus-otus-chart
+#              port:
+#                number: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  #  annotations:
+  #    kubernetes.io/ingress.class: "nginx"
+  #    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: istio-ingressgateway
+  namespace: istio-system
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - pathType: Prefix
+            backend:
+              service:
+                name: istio-ingressgateway
+                port:
+                  number: 80
+            path: /users/1
+#            path: /app(/|$)(.*)

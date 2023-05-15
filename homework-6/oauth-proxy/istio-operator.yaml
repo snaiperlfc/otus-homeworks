@@ -48,6 +48,16 @@ spec:
 
   values: # Настройки компонентов
     meshConfig: # Настройки Service mesh
+      accessLogFile: /dev/stdout
+      extensionProviders:
+        - name: "oauth2-proxy"
+          envoyExtAuthzHttp:
+            service: "oauth2-proxy.default.svc.cluster.local"
+            port: "4180" # The default port used by oauth2-proxy.
+            includeHeadersInCheck: [ "authorization", "cookie","x-forwarded-access-token","x-forwarded-user","x-forwarded-email","x-forwarded-proto","proxy-authorization","user-agent","x-forwarded-host","from","x-forwarded-for","accept","x-auth-request-redirect" ] # headers sent to the oauth2-proxy in the check request.
+            headersToUpstreamOnAllow: [ "authorization", "path", "x-auth-request-user", "x-auth-request-email", "x-auth-request-access-token","x-forwarded-access-token" ] # headers sent to backend application when request is allowed.
+            headersToDownstreamOnDeny: [ "content-type", "set-cookie" ] # headers sent back to the client when request is denied.
+
 
       enableAutoMtls: false # Отключаем шифрование
       enableTracing: true # Включаем tracing
@@ -147,7 +157,8 @@ data:
                 "h": 6,
                 "w": 24,
                 "x": 0,
-                "y": 1},
+                "y": 1
+              },
               "id": 19,
               "links": [],
               "mode": "markdown",
@@ -249,7 +260,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}
+              "show": true
+            }
           ],
           "yaxis": {
             "align": false,
@@ -299,7 +311,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "istio-proxy",
-              "refId": "B"}],
+              "refId": "B"
+            }],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -332,10 +345,12 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true
+            }],
           "yaxis": {
             "align": false,
-            "alignLevel": null}},
+            "alignLevel": null
+          }},
         {
           "collapsed": false,
           "gridPos": {
@@ -369,7 +384,8 @@ data:
             "min": false,
             "show": true,
             "total": false,
-            "values": false},
+            "values": false
+          },
           "lines": true,
           "linewidth": 1,
           "links": [],
@@ -388,7 +404,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "per istio-ingressgateway",
-              "refId": "A"},
+              "refId": "A"
+            },
             {
               "expr": "sum(container_memory_working_set_bytes{namespace!=\"istio-system\",container=\"istio-proxy\"}) / count(container_memory_working_set_bytes{namespace!=\"istio-system\",container=\"istio-proxy\"})",
               "format": "time_series",
@@ -431,7 +448,8 @@ data:
           ],
           "yaxis": {
             "align": false,
-            "alignLevel": null}
+            "alignLevel": null
+          }
         },
         {
           "aliasColors": {},
@@ -515,7 +533,8 @@ data:
               "show": true}],
           "yaxis": {
             "align": false,
-            "alignLevel": null}},
+            "alignLevel": null
+          }},
         {
           "collapsed": false,
           "gridPos": {
@@ -526,7 +545,8 @@ data:
           "id": 17,
           "panels": [],
           "title": "Istio Component Versions",
-          "type": "row"},
+          "type": "row"
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -597,10 +617,13 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true
+            }
+          ],
           "yaxis": {
             "align": false,
-            "alignLevel": null}},
+            "alignLevel": null
+          }},
         {
           "collapsed": false,
           "gridPos": {
@@ -663,14 +686,16 @@ data:
           "tooltip": {
             "shared": true,
             "sort": 0,
-            "value_type": "individual"},
+            "value_type": "individual"
+          },
           "type": "graph",
           "xaxis": {
             "buckets": null,
             "mode": "time",
             "name": null,
             "show": true,
-            "values": []},
+            "values": []
+          },
           "yaxes": [
             {
               "format": "bytes",
@@ -685,7 +710,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": false}],
+              "show": false
+            }],
           "yaxis": {
             "align": false,
             "alignLevel": null
@@ -733,7 +759,8 @@ data:
               "intervalFactor": 2,
               "legendFormat": "Total (k8s)",
               "refId": "A",
-              "step": 2}],
+              "step": 2}
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -750,7 +777,8 @@ data:
             "mode": "time",
             "name": null,
             "show": true,
-            "values": []},
+            "values": []
+          },
           "yaxes": [
             {
               "format": "short",
@@ -758,14 +786,16 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true
+            }],
           "yaxis": {
             "align": false,
             "alignLevel": null}},
@@ -836,7 +866,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "decimals": null,
               "format": "none",
@@ -882,7 +913,8 @@ data:
             "min": false,
             "show": true,
             "total": false,
-            "values": false},
+            "values": false
+          },
           "lines": true,
           "linewidth": 1,
           "links": [],
@@ -939,7 +971,8 @@ data:
               "intervalFactor": 2,
               "legendFormat": "Heap in-use",
               "refId": "E",
-              "step": 2},
+              "step": 2
+            },
             {
               "expr": "go_memstats_stack_inuse_bytes{app=\"istiod\"}",
               "format": "time_series",
@@ -982,7 +1015,8 @@ data:
             "mode": "time",
             "name": null,
             "show": true,
-            "values": []},
+            "values": []
+          },
           "yaxes": [
             {
               "format": "bytes",
@@ -997,11 +1031,14 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": false}],
+              "show": false
+            }
+          ],
           "yaxis": {
             "align": false,
             "alignLevel": null
-          }},
+          }
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -1022,7 +1059,8 @@ data:
             "min": false,
             "show": true,
             "total": false,
-            "values": false},
+            "values": false
+          },
           "lines": true,
           "linewidth": 1,
           "links": [
@@ -1060,7 +1098,8 @@ data:
               "intervalFactor": 2,
               "legendFormat": "pilot (self-reported)",
               "refId": "C",
-              "step": 2}],
+              "step": 2}
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -1084,14 +1123,16 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true}
+          ],
           "yaxis": {
             "align": false,
             "alignLevel": null
@@ -1181,7 +1222,8 @@ data:
               "logBase": 1024,
               "max": null,
               "min": null,
-              "show": false}
+              "show": false
+            }
           ],
           "yaxis": {
             "align": false,
@@ -1286,7 +1328,8 @@ data:
           "30m",
           "1h",
           "2h",
-          "1d"],
+          "1d"
+        ],
         "time_options": [
           "5m",
           "15m",
@@ -1343,7 +1386,8 @@ data:
             "h": 5,
             "w": 24,
             "x": 0,
-            "y": 1},
+            "y": 1
+          },
           "id": 56,
           "legend": {
             "avg": false,
@@ -1371,7 +1415,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{ tag }}",
-              "refId": "A"}],
+              "refId": "A"}
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -1428,7 +1473,8 @@ data:
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 7},
+            "y": 7
+          },
           "id": 5,
           "legend": {
             "avg": false,
@@ -1541,17 +1587,20 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": false}],
+              "show": false
+            }],
           "yaxis": {
             "align": false,
-            "alignLevel": null}
+            "alignLevel": null
+          }
         },
         {
           "aliasColors": {},
@@ -1644,7 +1693,8 @@ data:
           "yaxis": {
             "align": false,
             "alignLevel": null
-          }},
+          }
+        },
         {
           "aliasColors": {
           },
@@ -1666,7 +1716,8 @@ data:
             "min": false,
             "show": true,
             "total": false,
-            "values": false},
+            "values": false
+          },
           "lines": true,
           "linewidth": 1,
           "links": [],
@@ -1724,7 +1775,8 @@ data:
               "logBase": 1024,
               "max": null,
               "min": null,
-              "show": false}],
+              "show": false
+            }],
           "yaxis": {
             "align": false,
             "alignLevel": null
@@ -1770,7 +1822,8 @@ data:
               "intervalFactor": 2,
               "legendFormat": "Number of Goroutines",
               "refId": "A",
-              "step": 2}],
+              "step": 2}
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -1779,7 +1832,8 @@ data:
           "tooltip": {
             "shared": true,
             "sort": 0,
-            "value_type": "individual"},
+            "value_type": "individual"
+          },
           "type": "graph",
           "xaxis": {
             "buckets": null,
@@ -1864,7 +1918,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Endpoints",
-              "refId": "D"},
+              "refId": "D"
+            },
             {
               "expr": "sum(irate(pilot_xds_pushes{type=\"lds\"}[1m]))",
               "format": "time_series",
@@ -1877,7 +1932,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Routes",
-              "refId": "E"},
+              "refId": "E"
+            },
             {
               "expr": "sum(irate(pilot_xds_pushes{type=\"sds\"}[1m]))",
               "interval": "",
@@ -2004,7 +2060,8 @@ data:
               "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Internal Errors",
-              "refId": "H"},
+              "refId": "H"
+            },
             {
               "expr": "sum(rate(pilot_total_xds_rejects{app=\"istiod\"}[1m]))",
               "format": "time_series",
@@ -2050,14 +2107,16 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true
+            }],
           "yaxis": {
             "align": false,
             "alignLevel": null}},
@@ -2115,7 +2174,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "p99",
-              "refId": "C"},
+              "refId": "C"
+            },
             {
               "expr": "histogram_quantile(0.999, sum(rate(pilot_proxy_convergence_time_bucket[1m])) by (le))",
               "format": "time_series",
@@ -2154,7 +2214,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true
+            }],
           "yaxis": {
             "align": false,
             "alignLevel": null}},
@@ -2215,14 +2276,16 @@ data:
               "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Outbound Listeners (tcp over current tcp)",
-              "refId": "C"},
+              "refId": "C"
+            },
             {
               "expr": "pilot_conflict_outbound_listener_tcp_over_current_http{app=\"istiod\"}",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Outbound Listeners (tcp over current http)",
-              "refId": "D"}],
+              "refId": "D"}
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -2256,7 +2319,8 @@ data:
               "show": false}],
           "yaxis": {
             "align": false,
-            "alignLevel": null}},
+            "alignLevel": null
+          }},
         {
           "aliasColors": {},
           "bars": false,
@@ -2309,7 +2373,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Connected Endpoints {{pod}}",
-              "refId": "E"}
+              "refId": "E"
+            }
           ],
           "thresholds": [],
           "timeFrom": null,
@@ -2319,7 +2384,8 @@ data:
           "tooltip": {
             "shared": true,
             "sort": 0,
-            "value_type": "individual"},
+            "value_type": "individual"
+          },
           "type": "graph",
           "xaxis": {
             "buckets": null,
@@ -2335,7 +2401,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "short",
               "label": null,
@@ -2357,7 +2424,8 @@ data:
           "id": 64,
           "panels": [],
           "title": "Envoy Information",
-          "type": "row"},
+          "type": "row"
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -2400,7 +2468,8 @@ data:
               "hide": false,
               "intervalFactor": 1,
               "legendFormat": "XDS Connections",
-              "refId": "C"},
+              "refId": "C"
+            },
             {
               "expr": "sum(irate(envoy_cluster_upstream_cx_connect_fail{cluster_name=\"xds-grpc\"}[1m]))",
               "format": "time_series",
@@ -2438,7 +2507,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "ops",
               "label": null,
@@ -2539,7 +2609,8 @@ data:
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 32},
+            "y": 32
+          },
           "id": 42,
           "legend": {
             "avg": false,
@@ -2590,7 +2661,8 @@ data:
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "XDS Request Bytes Average",
-              "refId": "C"}],
+              "refId": "C"}
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -2599,7 +2671,8 @@ data:
           "tooltip": {
             "shared": true,
             "sort": 0,
-            "value_type": "individual"},
+            "value_type": "individual"
+          },
           "type": "graph",
           "xaxis": {
             "buckets": null,
@@ -2614,7 +2687,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "format": "ops",
               "label": null,
@@ -2633,7 +2707,8 @@ data:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 40},
+            "y": 40
+          },
           "id": 626,
           "panels": [],
           "title": "Webhooks",
@@ -2844,7 +2919,8 @@ data:
         ]},
       "time": {
         "from": "now-5m",
-        "to": "now"},
+        "to": "now"
+      },
       "timepicker": {
         "refresh_intervals": [
           "5s",
@@ -2856,7 +2932,8 @@ data:
           "30m",
           "1h",
           "2h",
-          "1d"],
+          "1d"
+        ],
         "time_options": [
           "5m",
           "15m",
@@ -2866,7 +2943,9 @@ data:
           "24h",
           "2d",
           "7d",
-          "30d"]},
+          "30d"
+        ]
+      },
       "timezone": "browser",
       "title": "Istio Control Plane Dashboard",
       "uid": "3--MLVZZk",
@@ -2930,10 +3009,12 @@ data:
                 "steps": [
                   {
                     "color": "green",
-                    "value": null},
+                    "value": null
+                  },
                   {
                     "color": "red",
-                    "value": 80}]}},
+                    "value": 80
+                  }]}},
             "overrides": []
           },
           "fill": 1,
@@ -3025,7 +3106,8 @@ data:
             "defaults": {
               "custom": {},
               "links": []},
-            "overrides": []},
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -3105,7 +3187,9 @@ data:
               "show": true}],
           "yaxis": {
             "align": false,
-            "alignLevel": null}},
+            "alignLevel": null
+          }
+        },
         {
           "collapsed": false,
           "datasource": "Prometheus",
@@ -3166,7 +3250,9 @@ data:
               "expr": "avg(envoy_wasm_remote_load_cache_entries)",
               "interval": "",
               "legendFormat": "entries",
-              "refId": "A"}],
+              "refId": "A"
+            }
+          ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -3204,7 +3290,8 @@ data:
               "show": true}],
           "yaxis": {
             "align": false,
-            "alignLevel": null}},
+            "alignLevel": null}
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -3237,7 +3324,8 @@ data:
           "linewidth": 1,
           "nullPointMode": "null",
           "options": {
-            "alertThreshold": true},
+            "alertThreshold": true
+          },
           "percentage": false,
           "pluginVersion": "7.2.1",
           "pointradius": 2,
@@ -3252,17 +3340,20 @@ data:
               "expr": "avg(envoy_wasm_remote_load_cache_hits)",
               "interval": "",
               "legendFormat": "hits",
-              "refId": "A"},
+              "refId": "A"
+            },
             {
               "expr": "avg(envoy_wasm_remote_load_cache_misses)",
               "interval": "",
               "legendFormat": "misses",
-              "refId": "B"},
+              "refId": "B"
+            },
             {
               "expr": "avg(envoy_wasm_remote_load_cache_negative_hits)",
               "interval": "",
               "legendFormat": "negative hits",
-              "refId": "C"}],
+              "refId": "C"
+            }],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -3299,7 +3390,8 @@ data:
           "yaxis": {
             "align": false,
             "alignLevel": null
-          }},
+          }
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -3309,7 +3401,8 @@ data:
           "fieldConfig": {
             "defaults": {
               "custom": {},
-              "links": []},
+              "links": []
+            },
             "overrides": []
           },
           "fill": 1,
@@ -3318,7 +3411,8 @@ data:
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 10},
+            "y": 10
+          },
           "hiddenSeries": false,
           "id": 10,
           "legend": {
@@ -3354,7 +3448,8 @@ data:
               "expr": "avg(envoy_wasm_remote_load_fetch_successes)",
               "interval": "",
               "legendFormat": "successes",
-              "refId": "B"}
+              "refId": "B"
+            }
           ],
           "thresholds": [],
           "timeFrom": null,
@@ -3381,7 +3476,8 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true},
+              "show": true
+            },
             {
               "$$hashKey": "object:289",
               "format": "short",
@@ -3390,7 +3486,8 @@ data:
               "max": null,
               "min": null,
               "show": true
-            }],
+            }
+          ],
           "yaxis": {
             "align": false,
             "alignLevel": null
@@ -3461,7 +3558,8 @@ data:
               "intervalFactor": 2,
               "legendFormat": "Total (k8s)",
               "refId": "A",
-              "step": 2}],
+              "step": 2
+            }],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
@@ -3496,11 +3594,13 @@ data:
               "max": null,
               "min": null,
               "show": false
-            }],
+            }
+          ],
           "yaxis": {
             "align": false,
             "alignLevel": null
-          }},
+          }
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -3586,10 +3686,12 @@ data:
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true}],
+              "show": true
+            }],
           "yaxis": {
             "align": false,
-            "alignLevel": null}}
+            "alignLevel": null
+          }}
       ],
       "refresh": false,
       "schemaVersion": 26,
@@ -3644,7 +3746,8 @@ data:
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 0},
+            "y": 0
+          },
           "height": "50px",
           "id": 13,
           "links": [],
@@ -3738,7 +3841,8 @@ data:
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"],
+            "rgba(50, 172, 45, 0.97)"
+          ],
           "datasource": "Prometheus",
           "format": "percentunit",
           "gauge": {
@@ -3811,7 +3915,8 @@ data:
             {
               "op": "=",
               "text": "N/A",
-              "value": "null"}],
+              "value": "null"
+            }],
           "valueName": "avg"},
         {
           "cacheTimeout": null,
@@ -3834,7 +3939,8 @@ data:
             "h": 3,
             "w": 6,
             "x": 12,
-            "y": 3},
+            "y": 3
+          },
           "id": 22,
           "interval": null,
           "links": [],
@@ -3869,7 +3975,8 @@ data:
             {
               "from": "null",
               "text": "N/A",
-              "to": "null"}],
+              "to": "null"}
+          ],
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": true,
@@ -3891,7 +3998,8 @@ data:
             {
               "op": "=",
               "text": "N/A",
-              "value": "null"}],
+              "value": "null"}
+          ],
           "valueName": "avg"},
         {
           "cacheTimeout": null,
@@ -3937,7 +4045,9 @@ data:
             },
             {
               "name": "range to text",
-              "value": 2}],
+              "value": 2
+            }
+          ],
           "maxDataPoints": 100,
           "nullPointMode": "connected",
           "nullText": null,
@@ -3996,7 +4106,8 @@ data:
             "h": 3,
             "w": 6,
             "x": 0,
-            "y": 6},
+            "y": 6
+          },
           "id": 113,
           "interval": null,
           "links": [],
@@ -4058,7 +4169,9 @@ data:
             {
               "op": "=",
               "text": "N/A",
-              "value": "null"}],
+              "value": "null"
+            }
+          ],
           "valueName": "current"},
         {
           "cacheTimeout": null,
@@ -4117,7 +4230,8 @@ data:
             {
               "from": "null",
               "text": "N/A",
-              "to": "null"}],
+              "to": "null"
+            }],
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -4129,7 +4243,8 @@ data:
               "expr": "max(pilot_k8s_cfg_events{type=\"DestinationRule\", event=\"add\"}) - (max(pilot_k8s_cfg_events{type=\"DestinationRule\", event=\"delete\"}) or max(up * 0))",
               "format": "time_series",
               "intervalFactor": 1,
-              "refId": "A"}],
+              "refId": "A"
+            }],
           "thresholds": "",
           "timeFrom": null,
           "timeShift": null,
@@ -4140,7 +4255,8 @@ data:
             {
               "op": "=",
               "text": "N/A",
-              "value": "null"}],
+              "value": "null"
+            }],
           "valueName": "current"},
         {
           "cacheTimeout": null,
@@ -4211,7 +4327,8 @@ data:
               "expr": "max(pilot_k8s_cfg_events{type=\"Gateway\", event=\"add\"}) - (max(pilot_k8s_cfg_events{type=\"Gateway\", event=\"delete\"}) or max(up * 0))",
               "format": "time_series",
               "intervalFactor": 1,
-              "refId": "A"}],
+              "refId": "A"
+            }],
           "thresholds": "",
           "timeFrom": null,
           "timeShift": null,
@@ -4223,7 +4340,8 @@ data:
               "op": "=",
               "text": "N/A",
               "value": "null"}],
-          "valueName": "current"},
+          "valueName": "current"
+        },
         {
           "cacheTimeout": null,
           "colorBackground": false,
@@ -4231,7 +4349,8 @@ data:
           "colors": [
             "#299c46",
             "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"],
+            "#d44a3a"
+          ],
           "datasource": "Prometheus",
           "format": "none",
           "gauge": {
@@ -4260,8 +4379,10 @@ data:
                 "lastNotNull"
               ],
               "fields": "",
-              "values": false},
-            "textMode": "auto"},
+              "values": false
+            },
+            "textMode": "auto"
+          },
           "mappingType": 1,
           "mappingTypes": [
             {
@@ -4330,7 +4451,8 @@ data:
             "h": 3,
             "w": 6,
             "x": 0,
-            "y": 6},
+            "y": 6
+          },
           "id": 117,
           "interval": null,
           "links": [],
@@ -4341,7 +4463,8 @@ data:
             "orientation": "horizontal",
             "reduceOptions": {
               "calcs": [
-                "lastNotNull"],
+                "lastNotNull"
+              ],
               "fields": "",
               "values": false},
             "textMode": "auto"},
@@ -4366,7 +4489,8 @@ data:
             {
               "from": "null",
               "text": "N/A",
-              "to": "null"}],
+              "to": "null"
+            }],
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -4378,7 +4502,8 @@ data:
               "expr": "max(pilot_k8s_cfg_events{type=\"ServiceEntry\", event=\"add\"}) - (max(pilot_k8s_cfg_events{type=\"ServiceEntry\", event=\"delete\"}) or max(up * 0))",
               "format": "time_series",
               "intervalFactor": 1,
-              "refId": "A"}],
+              "refId": "A"}
+          ],
           "thresholds": "",
           "timeFrom": null,
           "timeShift": null,
@@ -4426,9 +4551,11 @@ data:
             "orientation": "horizontal",
             "reduceOptions": {
               "calcs": [
-                "lastNotNull"],
+                "lastNotNull"
+              ],
               "fields": "",
-              "values": false},
+              "values": false
+            },
             "textMode": "auto"},
           "mappingType": 1,
           "mappingTypes": [
@@ -4438,7 +4565,8 @@ data:
             {
               "name": "range to text",
               "value": 2
-            }],
+            }
+          ],
           "maxDataPoints": 100,
           "nullPointMode": "connected",
           "nullText": null,
@@ -4450,7 +4578,8 @@ data:
             {
               "from": "null",
               "text": "N/A",
-              "to": "null"}],
+              "to": "null"
+            }],
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -4463,7 +4592,9 @@ data:
               "expr": "max(pilot_k8s_cfg_events{type=\"PeerAuthentication\", event=\"add\"}) - (max(pilot_k8s_cfg_events{type=\"PeerAuthentication\", event=\"delete\"}) or max(up * 0))",
               "format": "time_series",
               "intervalFactor": 1,
-              "refId": "A"}],
+              "refId": "A"
+            }
+          ],
           "thresholds": "",
           "timeFrom": null,
           "timeShift": null,
@@ -4512,7 +4643,8 @@ data:
               "calcs": [
                 "lastNotNull"],
               "fields": "",
-              "values": false},
+              "values": false
+            },
             "textMode": "auto"},
           "mappingType": 1,
           "mappingTypes": [
@@ -4534,7 +4666,8 @@ data:
             {
               "from": "null",
               "text": "N/A",
-              "to": "null"}],
+              "to": "null"}
+          ],
           "sparkline": {
             "fillColor": "rgba(31, 118, 189, 0.18)",
             "full": false,
@@ -4559,7 +4692,8 @@ data:
             {
               "op": "=",
               "text": "N/A",
-              "value": "null"}
+              "value": "null"
+            }
           ],
           "valueName": "current"},
         {
@@ -4604,7 +4738,8 @@ data:
               "value": 1},
             {
               "name": "range to text",
-              "value": 2}],
+              "value": 2}
+          ],
           "maxDataPoints": 100,
           "nullPointMode": "connected",
           "nullText": null,
@@ -4749,7 +4884,8 @@ data:
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
                 "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"],
+                "rgba(50, 172, 45, 0.97)"
+              ],
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "decimals": 2,
               "pattern": "Value #D",
@@ -4762,7 +4898,8 @@ data:
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
                 "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"],
+                "rgba(50, 172, 45, 0.97)"
+              ],
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "decimals": 2,
               "pattern": "Value #E",
@@ -4865,12 +5002,14 @@ data:
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "{{ destination_workload }}.{{ destination_workload_namespace }}",
-              "refId": "E"}
+              "refId": "E"
+            }
           ],
           "timeFrom": null,
           "title": "HTTP/GRPC Workloads",
           "transform": "table",
-          "type": "table"},
+          "type": "table"
+        },
         {
           "columns": [],
           "datasource": "Prometheus",
@@ -4879,7 +5018,8 @@ data:
             "h": 18,
             "w": 24,
             "x": 0,
-            "y": 30},
+            "y": 30
+          },
           "hideTimeOverride": false,
           "id": 109,
           "links": [],
@@ -4921,7 +5061,8 @@ data:
               "decimals": 2,
               "pattern": "Value #A",
               "thresholds": [
-                ""],
+                ""
+              ],
               "type": "number",
               "unit": "Bps"},
             {
@@ -4930,7 +5071,8 @@ data:
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
                 "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"],
+                "rgba(50, 172, 45, 0.97)"
+              ],
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "decimals": 2,
               "pattern": "Value #B",
@@ -4943,7 +5085,8 @@ data:
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
                 "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"],
+                "rgba(50, 172, 45, 0.97)"
+              ],
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "decimals": 2,
               "pattern": "Time",
@@ -5012,7 +5155,8 @@ data:
               "instant": true,
               "intervalFactor": 1,
               "legendFormat": "{{ destination_workload }}",
-              "refId": "B"}],
+              "refId": "B"}
+          ],
           "timeFrom": null,
           "title": "TCP Workloads",
           "transform": "table",
@@ -5039,7 +5183,8 @@ data:
             "rightSide": false,
             "show": true,
             "total": false,
-            "values": false},
+            "values": false
+          },
           "lines": true,
           "linewidth": 1,
           "links": [],
@@ -5135,7 +5280,8 @@ data:
           "30m",
           "1h",
           "2h",
-          "1d"],
+          "1d"
+        ],
         "time_options": [
           "5m",
           "15m",
